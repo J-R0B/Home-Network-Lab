@@ -4,8 +4,9 @@
 
 ## Design decisions
 
-- **One flat `/24` first.** Fewer moving parts to troubleshoot. VLANs and inter-VLAN routing come in Phase 2.
-- **The lab is isolated in my room.** The home Deco 6E only provides the internet uplink; it does **not** hand out DHCP to lab devices.
+- **One flat `/24` first.** Fewer moving parts to troubleshoot. 
+- **The lab is isolated in my room.** 
+- **The home Deco 6E only provides the internet uplink; it does **not** hand out DHCP to lab devices only to R1 g0/0/0 link.
 - **Domain controller is a VM on my main PC** (VirtualBox).
 - **DHCP:** the Windows Server runs DHCP, so I control scopes and options.
 

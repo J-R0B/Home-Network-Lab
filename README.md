@@ -1,14 +1,19 @@
 # Enterprise-Style Home Network Lab
 
-A hands-on networking and Windows Server lab built from real Cisco hardware, used to practice what I'm studying and to build skills for a networking role.
+Disclaimer: I used AI assistance while building this project and writing it up. I don’t claim to know every command or setting, and I’m still learning and developing my skills. As you read, please keep in mind that there may be mistakes, and that my setup may not match how professionals would do it. I built this lab mainly for fun and to learn, with the hope of one day landing a networking job. If you spot something I got wrong or could do better, I’d genuinely welcome the feedback.
 
-> **Status:** Phase 1 complete (flat network, Day 1: 2 Nov 2026).
+Introduction:
+A hands-on networking and Windows Server lab built from real Cisco hardware, used to practice what I'm studying and to build skills in Networking.
 
-## Day 1 result
+> **Status:** Phase 1 (flat network, Day 1: 2 Nov 2026).
 
+## Day 1
+
+Main idea:
 A flat network where a Windows Server domain controller hands out DHCP leases, domain-joined clients sit on different physical switches, and everything reaches the internet through a Cisco router.
 
-This is my first time building this, so it's a double NAT setup: R1 NATs my private subnet (10.0.10.0/24) to the Deco router network (192.168.68.x/24), then the Deco router NATs its private network to the public address from my internet provider.
+My thoughts:
+This was my first time configuring NAT to reach the internet, and for some reason the idea felt intimidating. My understanding was that the edge router would NAT the private network straight to the ISP’s public network, assuming the ISP provided a public IP. What I learned is that I didn’t have to worry about the public side at all. Instead, I could configured NAT on R1 to translate traffic to the Deco router’s network, and the Deco then performs NAT again on its way out to the internet. This is called double NAT, and seeing it work was a great learning moment. I assume double NAT isn't ideal for professional networks, but it works well for my home lab.
 
 ![Day 1 topology](diagrams/day1-topology.png)
 
@@ -49,7 +54,3 @@ diagrams/   Day 1 topology (image + Packet Tracer file)
 docs/       build logs, one per phase/day
 images/     photos and screenshots used in the docs
 ```
-
-## Skills practiced
-
-Cisco IOS (routing, NAT, ACLs) · IP addressing & subnetting · Windows Server (AD DS, DNS, DHCP) · domain joins · VirtualBox networking · structured cabling (hand-made Ethernet) · troubleshooting with `ping`, `ipconfig`, `show` commands · documentation
