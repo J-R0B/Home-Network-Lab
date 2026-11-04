@@ -1,6 +1,8 @@
 # Day 2: VLANs, Inter-VLAN Routing and a Restricted File Share
 
-**Date:** 3 Nov 2026  **Goal:** split the flat Day 1 network into two VLANs, route between them on the multilayer switch, give VLAN 20 its own DHCP scope, and lock a shared folder down to one user.
+**Date:** 3 Nov 2026
+
+**Goal:** split the flat Day 1 network into two VLANs, route between them on the multilayer switch, give VLAN 20 its own DHCP scope, and lock a shared folder down to one user.
 
 > Same disclaimer as the [main README](../README.md): I used AI assistance while building and writing this up, I'm still learning, and my setup may not match how professionals would do it. Feedback is welcome.
 
@@ -10,7 +12,7 @@
 
 ## Main idea
 
-Day 1 was one flat `10.0.10.0/24`, with R1 as the gateway. For Day 2 the multilayer switch (MLS) takes over as the gateway for two VLANs, R1 becomes a routed hop to the internet, and the DC's DHCP service hands out leases to both VLANs through a DHCP relay.
+Day 1 was one flat network `10.0.10.0/24`, with R1 as the gateway. For Day 2 the multilayer switch (MLS) takes over as the gateway for two VLANs, R1 becomes a routed hop to the internet, and the DC's DHCP service hands out leases to both VLANs through a DHCP relay.
 
 ![Day 2 topology](../diagrams/day2-topology.png)
 
