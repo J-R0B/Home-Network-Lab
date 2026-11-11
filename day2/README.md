@@ -1,6 +1,8 @@
 # Day 2: VLANs, Inter-VLAN Routing and a Restricted File Share
 
-**Date:** 3 Nov 2026  **Goal:** split the flat Day 1 network into two VLANs, route between them on the multilayer switch, give VLAN 20 its own DHCP scope, and lock a shared folder down to one user.
+**Date:** 3 Nov 2026 
+
+**Goal:** split the flat Day 1 network into two VLANs, route between them on the multilayer switch, give VLAN 20 its own DHCP scope, and lock a shared folder down to one user.
 
 > Disclaimer  [main README](../README.md)
 
