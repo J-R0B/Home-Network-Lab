@@ -26,7 +26,7 @@ Network: VLAN 10 `10.0.10.0/24` · VLAN 20 `10.0.20.0/24` · VLAN 30 `10.0.30.0/
 - [x] Phase 1: flat network, router NAT, AD + DNS + DHCP, domain-joined clients
 - [x] Phase 2: VLANs, trunks, inter-VLAN routing on the multilayer switch
 - [ ] Phase 3: firewall VM (pfSense/OPNsense), ACLs, move NAT/policy to it
-- [ ] Phase 4: hardening (SSH only, enable secret, port security, DHCP snooping), Group Policy, file shares (a restricted share was started in Day 2)
+- [ ] Phase 4: hardening (SSH only, enable secret, port security, DHCP snooping), Group Policy, file shares
 - [ ] Phase 5: monitoring and logging (syslog, SNMP)
 
 ## Repo layout
