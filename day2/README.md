@@ -1,16 +1,19 @@
 # Day 2: VLANs, Inter-VLAN Routing and a Restricted File Share
 
-**Date:** 3 Nov 2026  **Goal:** split the flat Day 1 network into two VLANs, route between them on the multilayer switch, give VLAN 20 its own DHCP scope, and lock a shared folder down to one user.
+**Date:** 3 Nov 2026  **Goal:** split the flat network into two VLANs, route between them on the multilayer switch, give VLAN 20 its own DHCP scope, and lock a shared folder down to one user.
 
-> Same disclaimer as the [main README](../README.md): I used AI assistance while building and writing this up, I'm still learning, and my setup may not match how professionals would do it. Feedback is welcome.
+> Disclaimer  [main README](../README.md)
 
-> **Status:** Phase 2 (VLANs, trunks, inter-VLAN routing). Part of Phase 4 (file shares) started early.
+> **Status:** Phase 2 (VLANs, trunks, inter-VLAN routing)
 
 [Day 1 build log](../docs/day1-build-log.md) covers the flat network this builds on.
 
 ## Main idea
 
 Day 1 was one flat `10.0.10.0/24`, with R1 as the gateway. For Day 2 the multilayer switch (MLS) takes over as the gateway for two VLANs, R1 becomes a routed hop to the internet, and the DC's DHCP service hands out leases to both VLANs through a DHCP relay.
+
+** Thoughts
+One thing I learned is to plan the network ahead of time before splitting it into VLANs, so you don’t get lost. For this lab, the design is fairly simple. Each client is in a different VLAN, and each VLAN has an IP on the MLS that acts as its gateway (SVI). Then I trunked the links and allowed each VLAN through them. Next, I changed the link between the MLS and the router to use a /30 subnet and added an ACL on the router to accept the .20 network. I also experimented with shared files for the clients. I made a group and users, then gave that group access to the shared folder.
 
 ![Day 2 topology](../diagrams/day2-topology.png)
 
@@ -47,7 +50,7 @@ DHCP pools: VLAN 10 `10.0.10.100–200`, VLAN 20 `10.0.20.100–200`. Domain `jo
 ## Steps
 
 ### 1. Prep
-Renamed the devices (`R1`, `MLS`, `S1`, `S2`). The generic default names confused me on Day 1. The MLS had a leftover ACL from earlier practice, so I wiped it (see lessons below).
+Renamed the devices (`R1`, `MLS`, `S1`, `S2`). The MLS had a leftover ACL from previous owner, so I wiped it.
 
 ### 2. VLANs and trunks (Layer 2)
 Created VLANs 10 and 20 on all three switches, trunked the MLS to both access switches, and assigned the host ports. Excerpt from the MLS ([full config](../configs/MLS-3650-day2.cfg)):
@@ -83,7 +86,7 @@ ip access-list standard 1
  20 permit 10.0.20.0 0.0.0.255
 ```
 
-The second ACL line matters. Without it, NAT ignores VLAN 20 and it can't reach the internet. Then the MLS:
+Added the second ACL line. Without it, NAT ignores VLAN 20 and it can't reach the internet. Then the MLS:
 
 ```
 ip routing

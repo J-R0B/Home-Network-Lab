@@ -1,8 +1,8 @@
-# Day 1: Flat Network with AD, DNS and DHCP
+# Day 1: Flat Network with AD and DHCP
 
 **Date:** 2 Nov 2026
 
-> Same disclaimer as the [main README](../README.md): I used AI assistance while building and writing this up, and I'm still learning.
+> Disclaimer [main README](../README.md)
 
 > **Status:** Phase 1 complete (flat network). Day 2 split this into VLANs, see [Day 2](../day2/README.md). Step-by-step notes: [Day 1 build log](../docs/day1-build-log.md).
 
@@ -12,7 +12,7 @@ A flat network where a Windows Server domain controller hands out DHCP leases, d
 
 ## My thoughts
 
-This was my first time configuring NAT to reach the internet, and for some reason the idea felt intimidating. My understanding was that the edge router would NAT the private network straight to the ISP's public network, assuming the ISP provided a public IP. What I learned is that I didn't have to worry about the public side at all. Instead, I could configured NAT on R1 to translate traffic to the Deco router's network, and the Deco then performs NAT again on its way out to the internet. This is called double NAT, and seeing it work was a great learning moment. I assume double NAT isn't ideal for professional networks, but it works well for my home lab.
+This was my first time configuring NAT to reach the internet, and for some reason the idea felt intimidating. My understanding of NAT was that the edge router would NAT the private network straight to the ISP's public network, assuming the ISP provided a public IP. What I learned is that I didn't have to worry about the public side at all. Instead, I could configured NAT on R1 to translate traffic to the Deco router's network, and the Deco then performs NAT again on its way out to the internet. This is called double NAT, and seeing it work was a great learning moment. I assume double NAT isn't ideal for professional networks, but it works well for my home lab.
 
 ![Day 1 topology](../diagrams/day1-topology.png)
 
