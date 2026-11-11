@@ -5,7 +5,7 @@ Disclaimer: I used AI assistance while building this project and writing it up. 
 Introduction:
 A hands-on networking and Windows Server lab built from real Cisco hardware, used to practice what I'm studying and to build skills in Networking.
 
-> **Status:** Phase 2 complete (VLANs and inter-VLAN routing, Day 2: 3 Nov 2026).
+> **Status:** Phase 2 complete (VLANs and inter-VLAN routing, Day 2: 3 Nov 2026). Day 3 (10 Nov 2026) started on ACLs and switch hardening.
 
 ## Build log
 
@@ -13,12 +13,13 @@ A hands-on networking and Windows Server lab built from real Cisco hardware, use
 |---|---|---|
 | Day 1 (2 Nov 2026) | Flat network: router NAT, Windows Server with AD, DNS and DHCP, domain-joined clients | [Day 1](day1/README.md) · [build log](docs/day1-build-log.md) |
 | Day 2 (3 Nov 2026) | VLANs, trunks, inter-VLAN routing on the multilayer switch, DHCP relay, restricted file share | [Day 2](day2/README.md) |
+| Day 3 (10 Nov 2026) | Security VLAN 30 for a Swann NVR and camera, DHCP from the DC, ACLs in both directions, SSH-only management and unused ports shut down | [Day 3](day3/README.md) |
 
 ## Current topology
 
-![Current topology](diagrams/day2-topology.png)
+![Current topology](diagrams/day3-topology.png)
 
-Network: VLAN 10 `10.0.10.0/24` · VLAN 20 `10.0.20.0/24` · router link `10.0.99.0/30` · domain `johndom.csnt`
+Network: VLAN 10 `10.0.10.0/24` · VLAN 20 `10.0.20.0/24` · VLAN 30 `10.0.30.0/24` · router link `10.0.99.0/30` · domain `johndom.csnt`
 
 ## Roadmap
 
@@ -33,6 +34,7 @@ Network: VLAN 10 `10.0.10.0/24` · VLAN 20 `10.0.20.0/24` · router link `10.0.9
 ```
 day1/       Day 1 write-up (flat network)
 day2/       Day 2 write-up (VLANs, inter-VLAN routing, restricted share)
+day3/       Day 3 write-up (security VLAN, ACLs, switch hardening)
 configs/    device configs, one set per day
 diagrams/   topology diagrams (image + Packet Tracer file), one per day
 docs/       build logs
